@@ -29,7 +29,7 @@ In stage 1, full text search in Azure Cognitive Search is used to retrieve a num
 Deploy Azure Resources namely - Azure Function App to host facade for OpenAI and Search APIs and Azure Search Service. 
 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fanildwarepo%2FOpenAIWorkshop%2Fmain%2Fscenarios%2Fopenai_on_custom_dataset%2Fdeploy%2Fazure-deploy.json%3Ftoken%3DGHSAT0AAAAAAB647FGDJN6PKBFHRLVI62USY77A5AQ)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fanildwarepo%2FOpenAIWorkshop%2Fmain%2Fscenarios%2Fopenai_on_custom_dataset%2Fdeploy%2Fazure-deploy.json)
 
 
 
