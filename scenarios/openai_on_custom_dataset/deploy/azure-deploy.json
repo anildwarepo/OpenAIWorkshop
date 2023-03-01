@@ -239,7 +239,7 @@
       "sku": {
         "name": "S0"
       },
-      "kind": "CognitiveServices",
+      "kind": "FormRecognizer",
       "properties": {
         "apiProperties": {
           "statisticsEnabled": false
