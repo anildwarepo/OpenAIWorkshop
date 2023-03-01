@@ -207,7 +207,7 @@ try:
     print(f"Analyze sample azure machine learning document from url: {formUrl}")
     poller = document_analysis_client.begin_analyze_document_from_url("prebuilt-layout", formUrl)
 
-    print(f"Processing result...")
+    print(f"Processing result...this might take a few minutes...")
     result = poller.result()
 
     delete_search_index()
