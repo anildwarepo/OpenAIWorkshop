@@ -26,7 +26,8 @@ In stage 1, full text search in Azure Cognitive Search is used to retrieve a num
 
 1. Azure services deployment
 
-Deploy Azure Resources namely - Azure Function App to host facade for OpenAI and Search APIs and Azure Search Service. 
+Deploy Azure Resources namely - Azure Function App to host facade for OpenAI and Search APIs, Azure Search Service and a Azure Form Recognizer resource.
+The Azure Function App also deploys the function code needed for powerapps automate flow. 
 
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fanildwarepo%2FOpenAIWorkshop%2Fmain%2Fscenarios%2Fopenai_on_custom_dataset%2Fdeploy%2Fazure-deploy.json)
@@ -49,12 +50,26 @@ Deploy Azure Resources namely - Azure Function App to host facade for OpenAI and
             conda activate openaiworkshop
             pip install -r .\orchestrator\requirements.txt
 
-     Update Azure Search, Open AI endpoints and API Keys in the secrets.env
+     Update Azure Search, Open AI endpoints, AFR Endpoint and API Keys in the secrets.env. 
+     Rename secrets.rename to secrets.env. (This is recommended to prevent secrets from leaking into external environments.)
+
+            AZURE_OPENAI_API_KEY=""
+            AZURE_OPENAI_ENDPOINT="https://<>.openai.azure.com/"
+            AZURE_OPENAI_API_KEY_EASTUS=""
+            AZURE_OPENAI_ENDPOINT_EASTUS="https://<>.openai.azure.com/"
+
+            AZSEARCH_EP="https://<>.search.windows.net/"
+            AZSEARCH_KEY=""
+            AFR_ENDPOINT="https://westus2.api.cognitive.microsoft.com/"
+            AFR_API_KEY=""
+            INDEX_NAME="azure-ml-docs"
 
      Run the below script to create search index, add semantic configuration and populate few sample documents from Azure doc. 
+     The search indexer chunks a sample pdf document(500 pages) which is downloaded from azure docs and chunks each page into 20 lines. Each chunk is created as a new seach doc in the index. The pdf document processing is achieved using Azure Form Recognizer service. 
+     
 
-
-            .\search-indexer.py
+            cd .\scenarios\openai_on_custom_dataset\ingest\
+            python .\search-indexer.py
             
         
 
