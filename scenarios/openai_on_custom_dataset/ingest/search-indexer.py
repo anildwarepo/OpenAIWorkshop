@@ -124,6 +124,28 @@ index_schema = {
   "defaultScoringProfile": "",
   "corsOptions": None,
   "analyzers": [],
+  "semantic": {
+     "configurations": [
+       {
+         "name": "semantic-config",
+         "prioritizedFields": {
+           "titleField": {
+                 "fieldName": "title"
+               },
+           "prioritizedContentFields": [
+             {
+               "fieldName": "text"
+             }            
+           ],
+           "prioritizedKeywordsFields": [
+             {
+               "fieldName": "text"
+             }             
+           ]
+         }
+       }
+     ]
+  },
   "charFilters": [],
   "tokenFilters": [],
   "tokenizers": [],
@@ -182,13 +204,18 @@ def process_afr_result(result):
         
 
 try:    
+    print(f"Analyze sample azure machine learning document from url: {formUrl}")
     poller = document_analysis_client.begin_analyze_document_from_url("prebuilt-layout", formUrl)
+
+    print(f"Processing result...")
     result = poller.result()
 
     delete_search_index()
     create_search_index()
 
+    print(f"Indexing sample document with 500 pages into Azure Search....this might take a few minutes...")
     process_afr_result(result)
+    print(f"done")
 except Exception as e:
     print(e)
 
